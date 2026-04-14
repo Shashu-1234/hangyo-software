@@ -34,6 +34,23 @@ def _styles():
     return s, title, sub, label, bold, normal, head, footer, copy_tag
 
 
+def _monthly_report_header_styles(title_style, subtitle_style):
+    brand = ParagraphStyle(
+        'MonthlyReportBrand',
+        parent=title_style,
+        leading=max(title_style.fontSize + 4, 24),
+        spaceAfter=6
+    )
+    report_title = ParagraphStyle(
+        'MonthlyReportTitle',
+        parent=subtitle_style,
+        leading=max(subtitle_style.fontSize + 3, 12),
+        spaceBefore=2,
+        spaceAfter=6
+    )
+    return brand, report_title
+
+
 def _bill_story(order, items, shop, copy_label):
     s, title, sub, label, bold, normal, head, footer, copy_tag = _styles()
     story = []
@@ -232,9 +249,10 @@ def generate_monthly_report_pdf(month_label, data, output_path):
                             rightMargin=15*mm, leftMargin=15*mm,
                             topMargin=12*mm, bottomMargin=12*mm)
     s, title, sub, label, bold, normal, head, footer, copy_tag = _styles()
+    brand_style, report_title_style = _monthly_report_header_styles(title, sub)
     story = []
-    story.append(Paragraph("🍦  HANGYO ICE CREAM", title))
-    story.append(Paragraph(f"Monthly Sales Report — {month_label}", sub))
+    story.append(Paragraph("🍦  HANGYO ICE CREAM", brand_style))
+    story.append(Paragraph(f"Monthly Sales Report — {month_label}", report_title_style))
     story.append(HRFlowable(width="100%", thickness=2, color=ORANGE))
     story.append(Spacer(1, 10))
 
