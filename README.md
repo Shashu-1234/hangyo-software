@@ -12,6 +12,10 @@ pip install reportlab pillow ttkbootstrap
 python run_app.py
 ```
 
+## 🎬 DEMO VIDEO
+
+[Watch the Ice Cream Distributor software demo](media/ice-cream-distributor-software-demo.mp4)
+
 ## 🔐 DEFAULT LOGIN
 - Username: admin
 - Password: admin123
